@@ -1,0 +1,280 @@
+<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Music Store Near You</title>
+<!-- custom-theme -->
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //custom-theme -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<!-- font-awesome-icons -->
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome-icons -->
+<link href="//fonts.googleapis.com/css?family=Sofia" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Prompt:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,thai,vietnamese" rel="stylesheet">
+</head>
+	
+<body>
+<!-- banner -->
+	<div class="banner1">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<div class="navbar-header navbar-left">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<h1><a class="navbar-brand" href="index.html"><span>Sur<br>Saptak</span></a></h1>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+					<nav class="menu menu--iris">
+						<ul class="nav navbar-nav menu__list">
+							<li class="menu__item"><a href="index.html" class="menu__link">Home</a></li>
+							<li class="menu__item"><a href="instruments.php" class="menu__link">Online Course</a></li>
+							<li class="menu__item menu__item--current"><a href="shops.html" class="menu__link">Find Near By Shops</a></li>
+							<li class="dropdown menu__item">
+								<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown">Account <b class="caret"></b></a>
+								<ul class="dropdown-menu agile_short_dropdown">
+									<li><a href="login.html">Log In</a></li>
+									<li><a href="signup.html">Sign Up</a></li>
+								</ul>
+							</li>
+							<li class="menu__item"><a href="mail.html" class="menu__link">Mail Us</a></li>
+              <li class="menu__item "><a href="reports.php" class="menu__link">Reports</a></li>
+						</ul>
+					</nav>
+				</div>
+			</nav>
+		</div>
+	</div>
+
+<!-- //banner -->	
+<!-- breadcrumbs -->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="w3l_breadcrumbs_left">
+			</div>
+			<div class="w3_agile_breadcrumbs_right">
+				
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //breadcrumbs -->
+      <div class="container">
+      
+        <h1 style="padding-top: 2%; padding-bottom: 2%;" >
+          <a href="" onclick="history.back()"  ><span class="label label-default"> <- Go back</span></a>
+        </h1>
+      </div>
+<!-- music -->
+	<div class="about w3_music">
+		<div class="container">
+			<h3 class="agileits_w3layouts_head">Shops<span>Near by</span></h3>
+			<p class="w3_agileits_para">You can buy/repair/tune your musical instruments here.</p>
+
+  <style>
+      #map {
+        height: 70%;
+                margin-left: 30px;
+        margin-right: 30px;
+      }
+      html, body {
+        height: 100%;
+        padding: 0;
+      }
+    </style>
+    <script>
+      var map;
+      var infoWindow;
+      var service;
+    var pos;  
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 18.523711, lng: 73.844562},
+          zoom: 13,
+        });
+        
+        infoWindow = new google.maps.InfoWindow();
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+
+              //infoWindow.setPosition(pos);
+              infoWindow.open(map);
+              map.setCenter(pos);
+            }, function() {
+              handleLocationError(true, infoWindow, map.getCenter());
+            });
+          } 
+        service = new google.maps.places.PlacesService(map);
+        map.addListener('idle', performSearch);
+      }
+
+      function performSearch() {
+        var request = {
+          bounds: map.getBounds(),
+          keyword: 'music instrument store'
+        };
+        service.radarSearch(request, callback);
+      }
+
+      function callback(results, status) {
+        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+          console.error(status);
+          return;
+        }
+        for (var i = 0, result; result = results[i]; i++) {
+          addMarker(result);
+        }
+      }
+
+      function addMarker(place) {
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location,
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          service.getDetails(place, function(result, status) {
+            if (status !== google.maps.places.PlacesServiceStatus.OK) {
+              console.error(status);
+              return;
+            }
+            infoWindow.setContent('<div><strong>' + result.name + '</strong><br>' +
+                    'Address: ' + result.formatted_address + '<br>' 
+                    + result.international_phone_number + '</div>');
+            infoWindow.open(map, marker);
+          });
+        });
+      }
+
+    </script>
+    </div></div>    
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAf0GlEYDrvD3GlorKsMshE_-aPTssJ1c&callback=initMap&libraries=places,visualization" async defer></script>
+             
+     <!--MAP END-->
+ 
+
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="w3l_breadcrumbs_left">
+      </div>
+      <div class="w3_agile_breadcrumbs_right">
+        
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+<!-- //music -->
+<!-- music-bottom -->
+	
+<!-- //music-bottom -->
+<!-- events -->
+	
+<!-- //events -->
+<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="col-md-4 agileinfo_footer_grid">
+				<h3>About Us</h3>
+				<p><span>
+				We provide finest and highly experienced Music Tutors who hold music degrees from wellknown and popular Music Schools.<br>
+				We will always try to give our students the best we can.<br>
+				Happy Learning!
+				</span></p>
+				
+				<div class="agileits_footer_grid_gallery">
+					
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="col-md-4 agileinfo_footer_grid">
+				
+			</div>
+			<div class="col-md-4 agileinfo_footer_grid">
+				<h3>Social Media</h3>
+				<ul class="agileinfo_social_icons">
+					<li><a href="#" class="facebook"><span class="fa fa-facebook" aria-hidden="true"></span><i>-</i>Facebook</a></li>
+					<li><a href="#" class="instagram"><span class="fa fa-instagram" aria-hidden="true"></span><i>-</i>Instagram</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+<!-- //footer -->
+<!-- copy-right -->
+	<div class="w3agile_copy_right">
+		<div class="container">
+			 <p> </p>
+		</div>
+	</div>
+<!-- //copy-right -->
+<!-- bootstrap-pop-up -->
+
+<!-- //bootstrap-pop-up -->
+<!-- timeline -->
+	<script type="text/javascript" src="js/jquery.cntl.js"></script> 
+	<script type="text/javascript">
+		$(document).ready(function(e){
+			$('.cntl').cntl({
+				revealbefore: 300,
+				anim_class: 'cntl-animate',
+				onreveal: function(e){
+					console.log(e);
+				}
+			});
+		});
+	</script>
+<!-- //timeline -->
+<!-- start-smooth-scrolling -->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smooth-scrolling -->
+<!-- for bootstrap working -->
+	<script src="js/bootstrap.js"></script>
+<!-- //for bootstrap working -->
+<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+								
+			$().UItoTop({ easingType: 'easeOutQuart' });
+								
+			});
+	</script>
+<!-- //here ends scrolling icon -->
+</body>
+</html>
